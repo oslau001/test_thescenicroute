@@ -31,11 +31,8 @@ let inactivityTimer;
    SETTINGS
 ---------------------------------------------------------- */
 
-const introDuration = 3000;
-const minimumDesktopDuration = 1000;
+const mobileIntroDuration = 3000;
 const inactivityDelay = 45000;
-
-const pageLoadTime = Date.now();
 
 
 /* ----------------------------------------------------------
@@ -70,25 +67,7 @@ function showIntro() {
 
 function resetInactivityTimer() {
 
-    const timeSinceLoad =
-        Date.now() - pageLoadTime;
-
-    const isDesktop =
-        window.innerWidth > 768;
-
-
-    /* On desktop, keep intro visible
-       for at least 2.5 seconds */
-
-    if (
-        !isDesktop ||
-        timeSinceLoad >= minimumDesktopDuration
-    ) {
-        hideIntro();
-    }
-
-
-    /* Restart inactivity timer */
+    hideIntro();
 
     clearTimeout(inactivityTimer);
 
@@ -107,34 +86,40 @@ function resetInactivityTimer() {
 
 if (introOverlay) {
 
-    /*
-       Show image when page loads.
-    */
-
     showIntro();
 
 
-    /*
-       Fade away after 3 seconds.
-    */
+    /* ------------------------------------------------------
+       MOBILE
 
-    setTimeout(() => {
+       Fade away automatically after 3 seconds.
+    ------------------------------------------------------ */
 
-        hideIntro();
+    if (window.innerWidth <= 768) {
 
-        /*
-           Start inactivity timer after intro disappears.
-        */
+        setTimeout(() => {
 
-        clearTimeout(inactivityTimer);
+            hideIntro();
 
-        inactivityTimer = setTimeout(() => {
+            clearTimeout(inactivityTimer);
 
-            showIntro();
+            inactivityTimer = setTimeout(() => {
 
-        }, inactivityDelay);
+                showIntro();
 
-    }, introDuration);
+            }, inactivityDelay);
+
+        }, mobileIntroDuration);
+
+    }
+
+
+    /* ------------------------------------------------------
+       DESKTOP
+
+       No automatic fade.
+       Intro stays visible until user activity.
+    ------------------------------------------------------ */
 
 
     /* ------------------------------------------------------
