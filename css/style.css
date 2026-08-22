@@ -276,6 +276,46 @@ body {
 }
 
 /* ==========================================================
+   VIDEO PANELS
+========================================================== */
+
+.video-panel {
+    width: 100%;
+
+    margin: 0 0 var(--content-gap) 0;
+}
+
+.video-panel video {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    margin: 0 0 4px 0;
+}
+
+/* ==========================================================
+   HORIZONTAL SEPARATOR
+========================================================== */
+
+.separator {
+    display: block;
+
+    width: 100%;
+    height: 0;
+
+    padding: 0;
+
+    border: 0;
+    border-top: 1px solid var(--column-color);
+
+    margin-top: calc(var(--content-gap) + 4px);
+    margin-right: 0;
+    margin-bottom: calc(var(--content-gap) * 2);
+    margin-left: 0;
+}
+
+/* ==========================================================
    MOBILE
 ========================================================== */
 
@@ -342,6 +382,7 @@ body {
     .side-column {
         display: none;
     }
+
 
 
     /* ----------------------------------------------------------
@@ -443,6 +484,19 @@ body {
         width: 100%;
         height: auto;
     }
+
+      /* ----------------------------------------------------------
+       VIDEO
+    ---------------------------------------------------------- */
+
+    .video-panel {
+    width: 100%;
+}
+
+.video-panel video {
+    width: 100%;
+    height: auto;
+}
 
 /* ----------------------------------------------------------
    INTRO OVERLAY — MOBILE
