@@ -1,0 +1,305 @@
+/* ==========================================================
+   TYPOGRAPHY
+========================================================== */
+
+/* ==========================================================
+   BODY TEXT
+========================================================== */
+
+.essay p {
+  margin: 0 0 var(--baseline) 0;
+
+  color: var(--text-color);
+
+  font-size: var(--body-size);
+  line-height: var(--body-line-height);
+
+  font-kerning: normal;
+  font-variant-ligatures: common-ligatures;
+  font-optical-sizing: auto;
+}
+
+/* ==========================================================
+   SMALL TEXT
+========================================================== */
+
+.essay .small {
+
+  font-size: var(--caption-size);
+  line-height: var(--caption-line-height);
+
+  color: var(--text-color);
+
+}
+
+/* ==========================================================
+   LINKS
+========================================================== */
+
+a {
+
+  color: var(--link-color);
+
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.12em;
+  text-decoration-skip-ink: auto;
+
+  transition: text-decoration-color 150ms linear;
+
+}
+
+a:visited {
+
+  color: var(--link-color);
+
+}
+
+a:hover,
+a:focus {
+
+  text-decoration-color: transparent;
+
+}
+
+a:active {
+
+  color: var(--link-color);
+
+}
+
+
+
+/* ==========================================================
+   CAPTIONS
+========================================================== */
+
+.caption {
+  margin: 0;
+
+  color: var(--text-color);
+
+  font-size: var(--caption-size);
+  line-height: var(--caption-line-height);
+}
+
+/* ==========================================================
+   EMPHASIS
+========================================================== */
+
+em {
+  font-style: italic;
+}
+
+/* ==========================================================
+   LISTS
+========================================================== */
+
+ul,
+ol {
+  margin: 0 0 var(--space-4) 1.2em;
+  padding: 0;
+}
+
+li {
+  margin-bottom: var(--space-1);
+}
+
+/* ==========================================================
+   DATES
+========================================================== */
+
+.date {
+
+  margin: 0 0 var(--space-3) 0;
+
+  font-size: var(--body-size);
+  line-height: var(--body-line-height);
+
+}
+
+/* ==========================================================
+   QUOTES
+========================================================== */
+
+.essay blockquote {
+  margin: var(--baseline) 0;
+  padding-left: 1.5em;
+
+  color: var(--text-color);
+
+  font-family: var(--body-font);
+  font-size: var(--body-size);
+  line-height: var(--body-line-height);
+  font-style: normal;
+}
+
+/* ==========================================================
+   FOOTNOTES
+========================================================== */
+
+.footnotes {
+  margin-top: var(--baseline);
+  margin-bottom: var(--baseline);
+  margin-left: 0;
+  padding-left: 3.5em;
+
+  color: var(--text-color);
+
+  font-size: var(--caption-size);
+  line-height: var(--body-line-height);
+}
+
+sup {
+  font-size: 0.6em;
+  line-height: 0;
+  vertical-align: super;
+}
+
+sup a {
+  text-decoration: none;
+  font-style: normal;
+}
+
+/*
+.footnotes li {
+
+  margin-bottom: var(--space-2);
+
+}
+  */
+
+/* ==========================================================
+   SPACING SCALE
+========================================================== */
+
+:root {
+  --space-1: 0.33rem;
+  --space-2: 0.66rem;
+  --space-3: 1rem;
+  --space-4: 1.32rem;
+  --space-5: 2rem;
+}
+
+
+/* ==========================================================
+   FONT RENDERING
+========================================================== */
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* ==========================================================
+   BODY TEXT FINESSE
+========================================================== */
+
+.essay {
+  text-wrap: pretty;
+}
+
+.essay p {
+  font-kerning: normal;
+  font-variant-ligatures: common-ligatures;
+  font-optical-sizing: auto;
+}
+
+
+/* ==========================================================
+   LINKS
+========================================================== */
+
+a {
+  text-decoration-skip-ink: auto;
+}
+
+sup a,
+.footnotes a {
+
+  text-decoration: none;
+
+}
+
+sup a:hover,
+sup a:focus {
+
+  font-style: normal;
+  text-decoration: none;
+
+}
+
+/* ==========================================================
+   COLUMN COLORS
+========================================================== */
+
+/* Side panel — dark */
+
+.side-column {
+    --column-color: rgb(25, 25, 25);
+    --column-background: rgb(255, 254, 252);
+}
+
+
+/* Column 1 — blue */
+
+.column:nth-child(2) {
+    --column-color: rgb(0, 70, 255);
+    --column-background: rgb(255, 254, 252);
+}
+
+
+/* Column 2 — red */
+
+.column:nth-child(3) {
+    --column-color: rgb(234, 35, 0);
+    --column-background: rgb(255, 254, 252);
+}
+
+
+/* Column 3 — black */
+
+.column:nth-child(4) {
+    --column-color: rgb(105, 70, 45);
+    --column-background: rgb(255, 254, 252);
+}
+
+
+/* Apply colors */
+
+.column {
+    background: var(--column-background);
+}
+
+.column .essay p,
+.column .essay blockquote,
+.column .footnotes,
+.column .caption {
+    color: var(--column-color);
+}
+
+.column a {
+    color: var(--column-color);
+}
+
+
+/* ==========================================================
+   HYPHENATION / AVSTAVNING
+   Inaktiv tills vidare.
+
+   För engelsk text:
+   <html lang="en">
+
+   För svensk text:
+   <html lang="sv">
+========================================================== */
+
+/*
+
+.essay {
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+*/
