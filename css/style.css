@@ -45,7 +45,7 @@ body {
 }
 
 body {
-    background: #f5f3ef;
+    background: rgb(255, 250, 240);
     font-family: var(--body-font);
 
     /*
@@ -338,6 +338,18 @@ body {
         --caption-line-height: 18px;
 
     }
+
+    @media (max-width: 768px) {
+
+    .main-column::after {
+        content: "";
+        display: block;
+        height: var(--page-padding);
+    }
+
+}
+
+    
 
 /* ----------------------------------------------------------
    FULLSCREEN MOBILE COLUMN
