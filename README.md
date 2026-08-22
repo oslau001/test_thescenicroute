@@ -1,6 +1,6 @@
-# Wandering the Avant-Garde
+# The Scenic Route
 
-An ongoing publishing project exploring the work of Barbro Östlihn in New York.
+An ongoing publishing project
 
 ---
 
