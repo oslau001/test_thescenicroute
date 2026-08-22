@@ -238,7 +238,7 @@ sup a:focus {
 
 .side-column {
     --column-color: rgb(25, 25, 25);
-    --column-background: rgb(255, 254, 252);
+    --column-background: rgb(255, 254, 254);
 }
 
 
@@ -246,7 +246,7 @@ sup a:focus {
 
 .column:nth-child(2) {
     --column-color: rgb(0, 70, 255);
-    --column-background: rgb(255, 254, 252);
+    --column-background: rgb(255, 254, 254);
 }
 
 
@@ -254,7 +254,7 @@ sup a:focus {
 
 .column:nth-child(3) {
     --column-color: rgb(255, 55, 0);
-    --column-background: rgb(255, 254, 252);
+    --column-background: rgb(255, 254, 254);
 }
 
 
@@ -262,7 +262,7 @@ sup a:focus {
 
 .column:nth-child(4) {
     --column-color: rgb(105, 70, 45);
-    --column-background: rgb(255, 254, 252);
+    --column-background: rgb(255, 254, 254);
 }
 
 
