@@ -18,6 +18,149 @@ const columnsContainer =
 
 
 /* ==========================================================
+   INTRO OVERLAY
+========================================================== */
+
+const introOverlay =
+    document.querySelector("#intro-overlay");
+
+let inactivityTimer;
+
+
+/* ----------------------------------------------------------
+   SETTINGS
+---------------------------------------------------------- */
+
+const introDuration = 3000;
+const minimumDesktopDuration = 1000;
+const inactivityDelay = 45000;
+
+const pageLoadTime = Date.now();
+
+
+/* ----------------------------------------------------------
+   HIDE INTRO
+---------------------------------------------------------- */
+
+function hideIntro() {
+
+    if (!introOverlay) return;
+
+    introOverlay.classList.add("is-hidden");
+
+}
+
+
+/* ----------------------------------------------------------
+   SHOW INTRO
+---------------------------------------------------------- */
+
+function showIntro() {
+
+    if (!introOverlay) return;
+
+    introOverlay.classList.remove("is-hidden");
+
+}
+
+
+/* ----------------------------------------------------------
+   RESET INACTIVITY TIMER
+---------------------------------------------------------- */
+
+function resetInactivityTimer() {
+
+    const timeSinceLoad =
+        Date.now() - pageLoadTime;
+
+    const isDesktop =
+        window.innerWidth > 768;
+
+
+    /* On desktop, keep intro visible
+       for at least 2.5 seconds */
+
+    if (
+        !isDesktop ||
+        timeSinceLoad >= minimumDesktopDuration
+    ) {
+        hideIntro();
+    }
+
+
+    /* Restart inactivity timer */
+
+    clearTimeout(inactivityTimer);
+
+    inactivityTimer = setTimeout(() => {
+
+        showIntro();
+
+    }, inactivityDelay);
+
+}
+
+
+/* ----------------------------------------------------------
+   INITIAL INTRO
+---------------------------------------------------------- */
+
+if (introOverlay) {
+
+    /*
+       Show image when page loads.
+    */
+
+    showIntro();
+
+
+    /*
+       Fade away after 3 seconds.
+    */
+
+    setTimeout(() => {
+
+        hideIntro();
+
+        /*
+           Start inactivity timer after intro disappears.
+        */
+
+        clearTimeout(inactivityTimer);
+
+        inactivityTimer = setTimeout(() => {
+
+            showIntro();
+
+        }, inactivityDelay);
+
+    }, introDuration);
+
+
+    /* ------------------------------------------------------
+       USER ACTIVITY
+    ------------------------------------------------------ */
+
+    [
+        "mousemove",
+        "mousedown",
+        "keydown",
+        "touchstart",
+        "scroll"
+    ].forEach((eventName) => {
+
+        window.addEventListener(
+            eventName,
+            resetInactivityTimer,
+            { passive: true }
+        );
+
+    });
+
+}
+
+
+/* ==========================================================
    DESKTOP — EXPANDABLE COLUMNS
 ========================================================== */
 

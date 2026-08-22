@@ -56,6 +56,59 @@ body {
     overflow: hidden;
 }
 
+/* ==========================================================
+   INTRO OVERLAY
+========================================================== */
+
+/* ==========================================================
+   INTRO OVERLAY
+========================================================== */
+
+.intro-overlay {
+    position: fixed;
+    inset: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    z-index: 99999;
+
+    overflow: hidden;
+
+    opacity: 1;
+
+    pointer-events: none;
+
+    transition:
+        opacity 1200ms ease;
+}
+
+
+/* Fade out */
+
+.intro-overlay.is-hidden {
+    opacity: 0;
+}
+
+
+/* Image */
+
+.intro-overlay picture {
+    display: block;
+
+    width: 100%;
+    height: auto;
+}
+
+.intro-overlay img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    mix-blend-mode: multiply;
+}
+
 
 /* ==========================================================
    THREE COLUMN LAYOUT
@@ -389,6 +442,32 @@ body {
     .image-panel img {
         width: 100%;
         height: auto;
+    }
+
+/* ----------------------------------------------------------
+   INTRO OVERLAY — MOBILE
+---------------------------------------------------------- */
+
+@media (max-width: 768px) {
+
+    .intro-overlay {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .intro-overlay picture {
+        width: 100%;
+        height: auto;
+    }
+
+    .intro-overlay img {
+        width: 100%;
+        height: auto;
+
+        object-fit: contain;
+        object-position: top center;
     }
 
 }

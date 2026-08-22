@@ -253,7 +253,7 @@ sup a:focus {
 /* Column 2 — red */
 
 .column:nth-child(3) {
-    --column-color: rgb(234, 35, 0);
+    --column-color: rgb(255, 55, 0);
     --column-background: rgb(255, 254, 252);
 }
 
