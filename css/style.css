@@ -170,39 +170,71 @@ body {
    EXPANDED COLUMNS — DESKTOP
 ========================================================== */
 
-/* Klick 1: exakt två ursprungliga spaltbredder */
+
+/* Klick 1 */
 
 .column.is-expanded-2 {
-    flex: 0 0 40%;
+    flex: 0 0 50%;
     order: -1;
 }
 
 
-/* Klick 2: exakt tre ursprungliga spaltbredder */
+/* ----------------------------------------------------------
+   KLICK 2
+   Aktiv spalt + secondary + två klippta tabs
+---------------------------------------------------------- */
 
-.column.is-expanded-3 {
-    flex: 0 0 60%;
-    order: -1;
-}
 
-/* Klick 2 — övriga spalter */
+/* Smala flikar */
 
 .columns.has-expanded-3 .column {
-    flex: 0 0 calc(20% / 3);
+    flex: 0 0 5%;
+    min-width: 5%;
+
+    padding-right: 0;
+
+    overflow-x: hidden;
 }
 
-/* Den valda spalten */
+
+/* Innehållet behåller normal spaltbredd */
+
+.columns.has-expanded-3 .column > * {
+    width: 25vw;
+    min-width: 25vw;
+}
+
+
+/* Aktiv spalt */
 
 .columns.has-expanded-3 .column.is-expanded-3 {
-    flex: 0 0 60%;
+    flex: 0 0 75%;
+    min-width: 75%;
+
+    padding-right: var(--page-padding);
+
+    order: -1;
 }
 
-/* Första kvarvarande spalten */
+.columns.has-expanded-3 .column.is-expanded-3 > * {
+    width: 100%;
+    min-width: 0;
+}
+
+
+/* Secondary column */
 
 .columns.has-expanded-3 .column.is-secondary {
-    flex: 0 0 20%;
+    flex: 0 0 15%;
+    min-width: 15%;
+
+    padding-right: var(--page-padding);
 }
 
+.columns.has-expanded-3 .column.is-secondary > * {
+    width: 100%;
+    min-width: 0;
+}
 
 /* ==========================================================
    COLUMN SCROLL INDICATORS
@@ -224,6 +256,17 @@ body {
 .column::-webkit-scrollbar-thumb {
     background: var(--column-color);
     border-radius: 0;
+}
+
+/* Hide scrollbar on the narrow tabs in click-2 mode */
+
+.columns.has-expanded-3 .column:not(.is-expanded-3):not(.is-secondary) {
+    scrollbar-width: none;
+}
+
+.columns.has-expanded-3
+.column:not(.is-expanded-3):not(.is-secondary)::-webkit-scrollbar {
+    display: none;
 }
 
 
