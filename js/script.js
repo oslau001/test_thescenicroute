@@ -3,15 +3,12 @@
 ========================================================== */
 
 const columns = document.querySelectorAll(
-    ".column:not(.side-column)"
+    ".column"
 );
 
 const mobileColumns = Array.from(
     document.querySelectorAll(".main-column")
 );
-
-const sideColumn =
-    document.querySelector(".side-column");
 
 const columnsContainer =
     document.querySelector(".columns");
@@ -167,28 +164,48 @@ columns.forEach((column) => {
         }
 
 
-        const isExpanded =
-            column.classList.contains("is-expanded");
+        const isExpanded2 =
+            column.classList.contains("is-expanded-2");
 
-        const isExpandedMore =
-            column.classList.contains("is-expanded-more");
+        const isExpanded3 =
+            column.classList.contains("is-expanded-3");
+
+
+        /* ------------------------------------------------------
+           RESET FUNCTION
+        ------------------------------------------------------ */
+
+        function resetDesktopColumns() {
+
+            columns.forEach((otherColumn) => {
+
+                otherColumn.classList.remove(
+                    "is-expanded-2",
+                    "is-expanded-3",
+                    "is-secondary"
+                );
+
+            });
+
+            if (columnsContainer) {
+
+                columnsContainer.classList.remove(
+                    "has-expanded-3"
+                );
+
+            }
+
+        }
 
 
         /* ------------------------------------------------------
            KLICK 3
-           3 spalter bred → tillbaka till grundläge
+           Tillbaka till fem lika stora spalter
         ------------------------------------------------------ */
 
-        if (isExpandedMore) {
+        if (isExpanded3) {
 
-            column.classList.remove(
-                "is-expanded",
-                "is-expanded-more"
-            );
-
-            if (sideColumn) {
-                sideColumn.classList.remove("is-hidden");
-            }
+            resetDesktopColumns();
 
             return;
         }
@@ -196,12 +213,45 @@ columns.forEach((column) => {
 
         /* ------------------------------------------------------
            KLICK 2
-           2 spalter bred → 3 spalter bred
+           60% + 20% + tre smala spalter
         ------------------------------------------------------ */
 
-        if (isExpanded) {
+        if (isExpanded2) {
 
-            column.classList.add("is-expanded-more");
+            resetDesktopColumns();
+
+            column.classList.add(
+                "is-expanded-3"
+            );
+
+
+            if (columnsContainer) {
+
+                columnsContainer.classList.add(
+                    "has-expanded-3"
+                );
+
+            }
+
+
+            /* Find the other columns */
+
+            const otherColumns =
+                Array.from(columns).filter(
+                    otherColumn =>
+                        otherColumn !== column
+                );
+
+
+            /* First remaining column stays normal width */
+
+            if (otherColumns[0]) {
+
+                otherColumns[0].classList.add(
+                    "is-secondary"
+                );
+
+            }
 
             return;
         }
@@ -209,27 +259,14 @@ columns.forEach((column) => {
 
         /* ------------------------------------------------------
            KLICK 1
-           Grundläge → 2 spalter bred
+           Selected column becomes two columns wide
         ------------------------------------------------------ */
 
-        columns.forEach((otherColumn) => {
+        resetDesktopColumns();
 
-            otherColumn.classList.remove(
-                "is-expanded",
-                "is-expanded-more"
-            );
-
-        });
-
-
-        column.classList.add("is-expanded");
-
-
-        /* Hide side column */
-
-        if (sideColumn) {
-            sideColumn.classList.add("is-hidden");
-        }
+        column.classList.add(
+            "is-expanded-2"
+        );
 
     });
 
@@ -257,11 +294,12 @@ function setMobileActiveColumn(activeColumn) {
     mobileColumns.forEach((column) => {
 
         column.classList.remove(
-            "is-mobile-active",
-            "is-mobile-tab-1",
-            "is-mobile-tab-2",
-            "is-mobile-full"
-        );
+    "is-mobile-active",
+    "is-mobile-tab-1",
+    "is-mobile-tab-2",
+    "is-mobile-tab-3",
+    "is-mobile-full"
+);
 
     });
 
@@ -269,9 +307,11 @@ function setMobileActiveColumn(activeColumn) {
     /* Remove fullscreen state */
 
     if (columnsContainer) {
+
         columnsContainer.classList.remove(
             "has-mobile-full"
         );
+
     }
 
 
@@ -282,26 +322,17 @@ function setMobileActiveColumn(activeColumn) {
     );
 
 
-    /* First visible tab */
+    /* ------------------------------------------------------
+       Assign tab positions automatically
+    ------------------------------------------------------ */
 
-    if (inactiveColumns[0]) {
+    inactiveColumns.forEach((column, index) => {
 
-        inactiveColumns[0].classList.add(
-            "is-mobile-tab-1"
+        column.classList.add(
+            `is-mobile-tab-${index + 1}`
         );
 
-    }
-
-
-    /* Second visible tab */
-
-    if (inactiveColumns[1]) {
-
-        inactiveColumns[1].classList.add(
-            "is-mobile-tab-2"
-        );
-
-    }
+    });
 
 }
 
@@ -341,8 +372,6 @@ mobileColumns.forEach((column) => {
 
         /* ------------------------------------------------------
            FULL → ACTIVE + TABS
-
-           Click the fullscreen column again.
         ------------------------------------------------------ */
 
         if (isFull) {
@@ -352,9 +381,11 @@ mobileColumns.forEach((column) => {
             );
 
             if (columnsContainer) {
+
                 columnsContainer.classList.remove(
                     "has-mobile-full"
                 );
+
             }
 
             return;
@@ -363,8 +394,6 @@ mobileColumns.forEach((column) => {
 
         /* ------------------------------------------------------
            ACTIVE → FULL
-
-           Click the already active column.
         ------------------------------------------------------ */
 
         if (isActive) {
@@ -386,9 +415,11 @@ mobileColumns.forEach((column) => {
 
 
             if (columnsContainer) {
+
                 columnsContainer.classList.add(
                     "has-mobile-full"
                 );
+
             }
 
             return;
@@ -397,8 +428,6 @@ mobileColumns.forEach((column) => {
 
         /* ------------------------------------------------------
            TAB → ACTIVE
-
-           Click one of the two visible tabs.
         ------------------------------------------------------ */
 
         setMobileActiveColumn(column);
@@ -463,12 +492,13 @@ window.addEventListener("resize", () => {
 
     mobileColumns.forEach((column) => {
 
-        column.classList.remove(
-            "is-mobile-active",
-            "is-mobile-tab-1",
-            "is-mobile-tab-2",
-            "is-mobile-full"
-        );
+column.classList.remove(
+    "is-mobile-active",
+    "is-mobile-tab-1",
+    "is-mobile-tab-2",
+    "is-mobile-tab-3",
+    "is-mobile-full"
+);
 
     });
 

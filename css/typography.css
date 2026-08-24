@@ -234,35 +234,29 @@ sup a:focus {
    COLUMN COLORS
 ========================================================== */
 
-/* Side panel — dark */
-
-.side-column {
-    --column-color: rgb(25, 25, 25);
-    --column-background: rgb(255, 254, 254);
-}
-
-
-/* Column 1 — blue */
-
-.column:nth-child(2) {
+.column-1 {
     --column-color: rgb(0, 70, 255);
-    --column-background: rgb(255, 254, 254);
+    --column-background: rgb(255, 254, 252);
 }
 
-
-/* Column 2 — red */
-
-.column:nth-child(3) {
+.column-2 {
     --column-color: rgb(255, 55, 0);
-    --column-background: rgb(255, 254, 254);
+    --column-background: rgb(255, 254, 252);
 }
 
-
-/* Column 3 — black */
-
-.column:nth-child(4) {
+.column-3 {
     --column-color: rgb(105, 70, 45);
-    --column-background: rgb(255, 254, 254);
+    --column-background: rgb(255, 254, 252);
+}
+
+.column-4 {
+    --column-color: rgb(40, 110, 0);
+    --column-background: rgb(255, 254, 252);
+}
+
+.column-5 {
+    --column-color: rgb(255, 100, 150);
+    --column-background: rgb(255, 254, 252);
 }
 
 
